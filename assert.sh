@@ -1,8 +1,15 @@
+@out() {
+  builtin echo $0
+  while IFS= read -r line; do
+    builtin echo " $line"
+  done
+}
+
 function @assert-equals() {
   declare expected="${1:?missing the expected result}" actual="${2:?missing the actual result}"
 
   if [[ "${expected}" != "${actual}" ]]; then
-    cat <<EOF
+    @out <<EOF
 Assert Failed:
      Expected: $expected
       But got: $actual
