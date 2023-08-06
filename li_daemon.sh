@@ -33,3 +33,6 @@ function stop_daemon_by_pid_file() {
     rm "$PID_FILE"
   fi
 }
+
+export  -f start_daemon_by_pid_file
+export  -f stop_daemon_by_pid_file
