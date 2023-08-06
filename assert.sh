@@ -7,13 +7,13 @@ function @assert-equals() {
 ##                         actual: ${actual}
 EOF
   else
-    @die - 2>&7 <<EOF
+    cat <<EOF
 Assert Failed:
      Expected: $expected
       But got: $actual
 EOF
   fi
-} >&7
+}
 export -f @assert-equals
 
 function @assert-success() {
