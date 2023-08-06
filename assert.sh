@@ -1,12 +1,7 @@
 function @assert-equals() {
   declare expected="${1:?missing the expected result}" actual="${2:?missing the actual result}"
 
-  if [[ "${expected}" == "${actual}" ]]; then
-    cat <<EOF
-    [assert-equals] expected: ${expected}
-##                         actual: ${actual}
-EOF
-  else
+  if [[ "${expected}" != "${actual}" ]]; then
     cat <<EOF
 Assert Failed:
      Expected: $expected
@@ -17,6 +12,10 @@ EOF
 export -f @assert-equals
 
 function @assert-success() {
-
   @assert-equals "0" "$?"
+}
+function @assert-fail() {
+  declare expected="<non-zero>" actual="$?"
+  [[ "$actual" -eq 0 ]] || expected="$actual"
+  @assert-equals "$expected" "$actual"
 }
