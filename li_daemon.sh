@@ -2,11 +2,7 @@
 # 参数：$1 保持守护进程PID的文件
 function start_daemon_by_pid_file() {
 
-  PID_FILE=$1
-  if [ -z "$PID_FILE" ]; then
-    echo "PID_FILE 未指定"
-    return 2
-  fi
+  PID_FILE=${1:?"PID_FILE 未指定"}
 
   # 检测守护进程是否存在
   if [ -f "$PID_FILE" ]; then
