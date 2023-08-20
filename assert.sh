@@ -1,5 +1,5 @@
 @out() {
-  builtin echo $0
+  builtin echo "$0"
   while IFS= read -r line; do
     builtin echo " $line"
   done
